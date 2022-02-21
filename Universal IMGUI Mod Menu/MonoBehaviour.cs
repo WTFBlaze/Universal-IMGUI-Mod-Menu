@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace Blaze
 {
-    public class ModMenu : MonoBehaviour
+    public class MonoBehaviourExample : MonoBehaviour
     {
         // Config Values
         public KeyCode toggleKeyBind = KeyCode.Insert;
@@ -13,6 +14,9 @@ namespace Blaze
         public KeyCode upKeyBind = KeyCode.UpArrow;
         public KeyCode downKeyBind = KeyCode.DownArrow;
         public bool logMenuStateChanged = true;
+        public string menuTitleText = "<size=35><b><color=red>Mod Menu Base</color></b></size>";
+        public string subTitleText = "<size=25><b><color=#7d0000>by WTFBlaze!</color></b></size>";
+        public string highlightedOptionHex = "#7d0000";
 
         // Don't Change
         private Rect _rect = new Rect(0, 0, 500, Screen.height);
@@ -26,10 +30,16 @@ namespace Blaze
 
         public void Start()
         {
-            var page1 = AddPage("Page Name");
-            AddButton(page1, "Button Text", delegate
+            var page1 = AddPage("Example Page");
+
+            AddButton(page1, "Example Button", delegate
             {
                 Console.WriteLine("Button Clicked!");
+            });
+
+            AddButton(page1, "View On Github", delegate
+            {
+                Process.Start("https://github.com/WTFBlaze/Universal-IMGUI-Mod-Menu");
             });
         }
 
@@ -145,13 +155,13 @@ namespace Blaze
             if (isMainMenu)
             {
                 GUILayout.Space(150f);
-                GUILayout.Label("<size=35><b><color=red>MorgueHack 2042</color></b></size>", _textStyle, new GUILayoutOption[0]);
-                GUILayout.Label("<size=25><b>by <color=#7d0000>WTFBlaze</color></b></size>", _textStyle, new GUILayoutOption[0]);
+                GUILayout.Label(menuTitleText, _textStyle, new GUILayoutOption[0]);
+                GUILayout.Label(subTitleText, _textStyle, new GUILayoutOption[0]);
                 GUILayout.Space(45f);
 
                 foreach (var p in pages)
                 {
-                    GUILayout.Label($"<size=30><b>{(mmItemIndex == p.pageID ? $"<color=#7d0000>{p.label}</color>" : p.label)}</b></size>", _textStyle, new GUILayoutOption[0]);
+                    GUILayout.Label($"<size=30><b>{(mmItemIndex == p.pageID ? $"<color={highlightedOptionHex}>{p.label}</color>" : p.label)}</b></size>", _textStyle, new GUILayoutOption[0]);
                     GUILayout.Space(10f);
                 }
             }
@@ -163,7 +173,7 @@ namespace Blaze
 
                 foreach (var b in currentPage.buttons)
                 {
-                    GUILayout.Label($"<size=30><b>{(currentPage.selectedItem == b.buttonID ? $"<color=#7d0000>{b.label}</color>" : b.label)}</b></size>", _textStyle, new GUILayoutOption[0]);
+                    GUILayout.Label($"<size=30><b>{(currentPage.selectedItem == b.buttonID ? $"<color={highlightedOptionHex}>{b.label}</color>" : b.label)}</b></size>", _textStyle, new GUILayoutOption[0]);
                     GUILayout.Space(10f);
                 }
             }
