@@ -1,5 +1,4 @@
 # Universal Unity IMGUI Mod Menu Base
-![downloads](https://img.shields.io/github/downloads/WTFBlaze/Universal-IMGUI-Mod-Menu/total?logo=github)
 ![discord](https://img.shields.io/discord/913037430951657552?label=Discord&logo=Discord&logoColor=white)
 ![previewImage](https://github.com/WTFBlaze/Universal-IMGUI-Mod-Menu/blob/master/repo%20images/preview.png?raw=true)
 
